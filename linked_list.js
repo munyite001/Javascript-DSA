@@ -174,6 +174,68 @@ class LinkedList
         return (-1);
     }
 
+    insertAt(index, value)
+    {
+        // Inserts a new node at the specified index
+        if (index < 0 || index > this.size)
+        {
+            return null;
+        }
+        else if (index == 0)
+        {
+            const newNode = new Node(value);
+            newNode.next = this.head;
+            this.head = newNode;
+            return "Successfully inserted new node at index 0";
+        }
+        else
+        {
+            const newNode = new Node(value);
+            let current = this.head;
+            let previous = null;
+            let i = 0;
+            while (i < index)
+            {
+                previous = current;
+                current = current.next;
+                i++;
+            }
+            previous.next = newNode;
+            newNode.next = current;
+            return `Successfully inserted new node at index ${index}`;
+        }
+    }
+
+    removeAt(index)
+    {
+        if (index < 0 || index > this.size)
+        {
+            return null;
+        }
+        else if (index == 0)
+        {
+            const removedNode = this.head;
+            this.head = this.head.next;
+            this.size--;
+            return removedNode;
+        }
+        else
+        {
+            let current = this.head;
+            let previous = null;
+            let i = 0;
+            while (i < index)
+            {
+                previous = current;
+                current = current.next;
+                i++;
+            }
+            previous.next = current.next;
+            this.size--;
+            return current;
+        }
+    }
+
     toString()
     {
         //  Returns a string representation of the list
@@ -204,4 +266,7 @@ console.log(myList.contains(5));
 console.log(myList.contains(3));
 console.log(myList.find(5));
 console.log(myList.toString());
-console.log(myList.pop());
+console.log(myList.insertAt(1, 10));
+console.log(myList.toString());
+console.log(myList.removeAt(1));
+console.log(myList.toString());
