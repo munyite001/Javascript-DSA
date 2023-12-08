@@ -106,6 +106,30 @@ class LinkedList
     pop()
     {
         //  Removes the last node from the list and returns it
+        if (!this.head)
+        {
+            return null;
+        }
+
+        if (this.head.next === null)
+        {
+            const lastNode = this.head;
+            this.head = null;
+            this.size--;
+            return lastNode;
+        }
+        let current = this.head;
+        let previous = null;
+        
+        while (current.next !== null)
+        {
+            previous = current;
+            current = current.next;
+        }
+        previous.next = null;
+        this.size--;
+
+        return current;
     }
 
     contains(value)
@@ -179,3 +203,5 @@ console.log(myList.listTail());
 console.log(myList.contains(5));
 console.log(myList.contains(3));
 console.log(myList.find(5));
+console.log(myList.toString());
+console.log(myList.pop());
