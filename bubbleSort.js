@@ -28,3 +28,14 @@ function bubbleSort(nums) {
 let nums = [5, 3, 8, 4, 2];
 let sortedNums = bubbleSort(nums);
 console.log(sortedNums); // [2, 3, 4, 5, 8]
+
+
+/**
+ * Time Complexity:
+ * The time complexity of bubble sort is O(n^2) in the worst case.
+ * The time complexity of bubble sort is O(n) in the best case.
+ * The time complexity of bubble sort is O(n^2) in the average case.
+ * Space Complexity:
+ * The space complexity of bubble sort is O(1).
+ * Bubble sort is an in-place sorting algorithm.
+ */
