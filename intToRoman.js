@@ -71,57 +71,70 @@ Constraints:
  * @param {number} num
  * @return {string}
  */
-var intToRoman = function (num) {
-    const romanTable = {
-        I: 1,
-        V: 5,
-        X: 10,
-        L: 50,
-        C: 100,
-        D: 500,
-        M: 1000
-    };
+// var intToRoman = function (num) {
+//     const romanTable = {
+//         I: 1,
+//         V: 5,
+//         X: 10,
+//         L: 50,
+//         C: 100,
+//         D: 500,
+//         M: 1000
+//     };
 
-    let romanKeys = Object.keys(romanTable);
-    let romanVals = Object.values(romanTable);
+//     let romanKeys = Object.keys(romanTable);
+//     let romanVals = Object.values(romanTable);
 
-    let result = "";
+//     let result = "";
 
-    while (num > 0) {
-        if (num.toString().startsWith("9") || num.toString().startsWith("4")) {
-            if (num >= 900) {
-                result += "CM";
-                num -= 900;
-            } else if (num >= 400 && num < 500) {
-                result += "CD";
-                num -= 400;
-            } else if (num >= 90 && num < 100) {
-                result += "XC";
-                num -= 90;
-            } else if (num >= 40 && num < 50) {
-                result += "XL";
-                num -= 40;
-            } else if (num == 9) {
-                result += "IX";
-                num -= 9;
-            } else if (num == 4) {
-                result += "IV";
-                num -= 4;
-            }
-        } else {
-            if (num >= 1000) {
-                result += "M";
-                num -= 1000;
-            } else {
-                for (let i = 0; i < romanVals.length; i++) {
-                    if (romanVals[i] > num && num >= romanVals[i - 1]) {
-                        result += String(romanKeys[i - 1]);
-                        num -= parseInt(romanVals[i - 1]);
-                    }
-                }
-            }
-        }
-    }
+//     while (num > 0) {
+//         if (num.toString().startsWith("9") || num.toString().startsWith("4")) {
+//             if (num >= 900) {
+//                 result += "CM";
+//                 num -= 900;
+//             } else if (num >= 400 && num < 500) {
+//                 result += "CD";
+//                 num -= 400;
+//             } else if (num >= 90 && num < 100) {
+//                 result += "XC";
+//                 num -= 90;
+//             } else if (num >= 40 && num < 50) {
+//                 result += "XL";
+//                 num -= 40;
+//             } else if (num == 9) {
+//                 result += "IX";
+//                 num -= 9;
+//             } else if (num == 4) {
+//                 result += "IV";
+//                 num -= 4;
+//             }
+//         } else {
+//             if (num >= 1000) {
+//                 result += "M";
+//                 num -= 1000;
+//             } else {
+//                 for (let i = 0; i < romanVals.length; i++) {
+//                     if (romanVals[i] > num && num >= romanVals[i - 1]) {
+//                         result += String(romanKeys[i - 1]);
+//                         num -= parseInt(romanVals[i - 1]);
+//                     }
+//                 }
+//             }
+//         }
+//     }
 
-    return result;
-};
+//     return result;
+// };
+
+
+var intToRoman = function(num) {
+
+    const thousandths = ["", "M", "MM", "MMM"];
+    const hundredths = ["", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"];
+    const tenths = ["", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"];
+    const ones = ["", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"];
+
+    return `${thousandths[Math.floor(num / 1000)]}${hundredths[Math.floor((num % 1000)/100)]}${tenths[Math.floor((num % 100)/10)]}${ones[Math.floor(num % 10)]}`
+}
+
+console.log(intToRoman(1987));
